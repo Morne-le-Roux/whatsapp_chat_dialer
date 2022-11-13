@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const WhatsappChatDialer());
@@ -15,8 +16,17 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
   //VARIABLES
   String countryCode = "";
   String phoneNumber = "";
-  String api = "wa.me/";
+  String api = "https://wa.me/";
   String completedLink = "";
+
+  Future<void> launchWhatsapp({required url}) async {
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+      print("launched");
+    } else {
+      throw "Could not launch $url";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +133,8 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                               content: Text(
                                   "Please remove the '0' in front of your phone number!")));
                         } else {
-                          print("SUCCESS!");
+                          var uri = Uri.parse(completedLink);
+                          launchWhatsapp(url: uri);
                         }
                       }
                     }
