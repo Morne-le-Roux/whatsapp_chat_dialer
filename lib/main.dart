@@ -52,9 +52,9 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                 //COUNTRY CODE TEXTFIELD
 
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 130, vertical: 15),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
+                    width: 150,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                         border: Border.all(
@@ -70,13 +70,16 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
                 const Text("Phone Number"),
 
                 //PHONE NUMBER TEXTFIELD
 
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
