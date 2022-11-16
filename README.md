@@ -1,16 +1,5 @@
-# whatsapp_chat_dialer
+Basic app built for practice and use with my current job to send graphic design samples over Whatsapp to clients without saving their phone number.
 
-A new Flutter project.
+Built with Flutter and Dart.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Takes a country code and phone number as an input, then opens a Whatsapp chat with that number.
