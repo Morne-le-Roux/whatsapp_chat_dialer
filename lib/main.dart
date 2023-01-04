@@ -19,6 +19,7 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
   String api = "https://wa.me/";
   String completedLink = "";
 
+//FUNCTION TO LAUNCH WHATSAPP URL
   Future<void> launchWhatsapp({required url}) async {
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
@@ -38,10 +39,11 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
             title: const Center(child: Text("Whatsapp Chat Dialer")),
           ),
 
-          //BODY
+//BODY
 
           body: Container(
-            color: Colors.white, //BACKGROUND COLOR
+//BACKGROUND COLOR
+            color: Colors.white,
             child: Column(
               children: [
                 const SizedBox(
@@ -49,7 +51,7 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                 ),
                 const Text("Country Code"),
 
-                //COUNTRY CODE TEXTFIELD
+//COUNTRY CODE TEXTFIELD
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -58,7 +60,8 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                         border: Border.all(
-                            color: Colors.lightGreenAccent), //BORDER COLOR
+//BORDER COLOR
+                            color: Colors.lightGreenAccent),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10))),
                     child: TextField(
@@ -75,7 +78,7 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                 ),
                 const Text("Phone Number"),
 
-                //PHONE NUMBER TEXTFIELD
+//PHONE NUMBER TEXTFIELD
 
                 Padding(
                   padding:
@@ -84,7 +87,8 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                         border: Border.all(
-                            color: Colors.lightGreenAccent), //BORDER COLOR
+                            //BORDER COLOR
+                            color: Colors.lightGreenAccent),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10))),
                     child: TextField(
@@ -96,7 +100,7 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                   ),
                 ),
 
-                //BUTTON TO RUN APP
+//BUTTON TO LAUNCH URL
 
                 GestureDetector(
                   child: Container(
@@ -116,25 +120,34 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                     ),
                   ),
 
-                  //ON TAP
+//ON TAP
 
                   onTap: () {
                     completedLink = "$api$countryCode$phoneNumber";
 
+//CONDITIONALS TO CHECK
+
+//IF NO PHONE NUMBER IS INSERTED
                     if (phoneNumber == "") {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text(
                               "You cannot leave the phone number empty.")));
+
+//IF NO COUNTRY CODE IS INSERTED
                     } else {
                       if (countryCode == "") {
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                             content: Text(
                                 "You cannot leave the country code empty.")));
+
+//IF THERE IS A ZERO IN FRONT OF THE NUMBER
                       } else {
                         if (phoneNumber.substring(0, 1) == "0") {
                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                               content: Text(
                                   "Please remove the '0' in front of your phone number!")));
+
+//IF EVERYTHING ELSE RUNS FINE
                         } else {
                           var uri = Uri.parse(completedLink);
                           launchWhatsapp(url: uri);
