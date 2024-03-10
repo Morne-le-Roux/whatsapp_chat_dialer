@@ -73,28 +73,27 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 150,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-//BORDER COLOR
-                            color: Colors.amber),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10))),
-                    child: TextField(
-                      style: _textStyle,
-                      controller: _countryCode,
-                      decoration: InputDecoration(
-                          icon: const Icon(
-                            Icons.map_outlined,
-                            color: Colors.amber,
-                          ),
-                          prefix: Text(
-                            "+",
-                            style: _textStyle,
-                          ),
-                          border: InputBorder.none),
+                  child: Material(
+                    borderRadius: BorderRadius.circular(25),
+                    elevation: 10,
+                    color: const Color.fromARGB(255, 22, 0, 37),
+                    child: Container(
+                      width: 150,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextField(
+                        style: _textStyle,
+                        controller: _countryCode,
+                        decoration: InputDecoration(
+                            icon: const Icon(
+                              Icons.map_outlined,
+                              color: Colors.amber,
+                            ),
+                            prefix: Text(
+                              "+",
+                              style: _textStyle,
+                            ),
+                            border: InputBorder.none),
+                      ),
                     ),
                   ),
                 ),
@@ -111,23 +110,22 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            //BORDER COLOR
-                            color: Colors.amber),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10))),
-                    child: TextField(
-                      style: _textStyle,
-                      decoration: const InputDecoration(
-                          icon: Icon(
-                            Icons.phone_outlined,
-                            color: Colors.amber,
-                          ),
-                          border: InputBorder.none),
-                      onChanged: (value) => _phoneNumber = value,
+                  child: Material(
+                    borderRadius: BorderRadius.circular(25),
+                    elevation: 10,
+                    color: const Color.fromARGB(255, 22, 0, 37),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextField(
+                        style: _textStyle,
+                        decoration: const InputDecoration(
+                            icon: Icon(
+                              Icons.phone_outlined,
+                              color: Colors.amber,
+                            ),
+                            border: InputBorder.none),
+                        onChanged: (value) => _phoneNumber = value,
+                      ),
                     ),
                   ),
                 ),
