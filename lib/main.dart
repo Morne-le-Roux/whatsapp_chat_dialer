@@ -85,12 +85,15 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                     child: TextField(
                       style: _textStyle,
                       controller: _countryCode,
-                      decoration: const InputDecoration(
-                          icon: Icon(
+                      decoration: InputDecoration(
+                          icon: const Icon(
                             Icons.map_outlined,
                             color: Colors.amber,
                           ),
-                          prefix: Text("+"),
+                          prefix: Text(
+                            "+",
+                            style: _textStyle,
+                          ),
                           border: InputBorder.none),
                     ),
                   ),
