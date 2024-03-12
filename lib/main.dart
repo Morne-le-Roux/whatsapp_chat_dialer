@@ -6,7 +6,7 @@ import 'package:window_manager/window_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
-  if (Platform.isWindows) {
+  if (Platform.isWindows || Platform.isMacOS) {
     WindowManager.instance.setMinimumSize(const Size(400, 600));
     WindowManager.instance.setMaximumSize(const Size(400, 600));
   }
@@ -21,6 +21,39 @@ class WhatsappChatDialer extends StatefulWidget {
 }
 
 class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
+  void openChat() {
+    _completedLink =
+        "whatsapp://send/?phone=${_countryCode.text}$_phoneNumber&text&type=phone_number";
+
+//CONDITIONALS TO CHECK
+
+//IF NO PHONE NUMBER IS INSERTED
+    if (_phoneNumber == "") {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("You cannot leave the phone number empty.")));
+
+//IF NO COUNTRY CODE IS INSERTED
+    } else {
+      if (_countryCode.text == "") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("You cannot leave the country code empty.")));
+
+//IF THERE IS A ZERO IN FRONT OF THE NUMBER
+      } else {
+        if (_phoneNumber.substring(0, 1) == "0") {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text(
+                  "Please remove the '0' in front of your phone number!")));
+
+//IF EVERYTHING ELSE RUNS FINE
+        } else {
+          var uri = Uri.parse(_completedLink);
+          launchWhatsapp(url: uri);
+        }
+      }
+    }
+  }
+
   //VARIABLES
 
   final TextStyle _textStyle =
@@ -135,60 +168,23 @@ class _WhatsappChatDialerState extends State<WhatsappChatDialer> {
                 const SizedBox(height: 20),
 
                 GestureDetector(
-                  child: Container(
-                    height: 50,
-                    width: 200,
-                    decoration: const BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
+                    onTap: () => openChat(),
+                    child: Container(
+                      height: 50,
+                      width: 200,
+                      decoration: const BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Open Chat",
-                        style: _textStyle.copyWith(color: Colors.black),
+                      child: Center(
+                        child: Text(
+                          "Open Chat",
+                          style: _textStyle.copyWith(color: Colors.black),
+                        ),
                       ),
-                    ),
-                  ),
-
-//ON TAP
-
-                  onTap: () {
-                    _completedLink =
-                        "whatsapp://send/?phone=${_countryCode.text}$_phoneNumber&text&type=phone_number";
-
-//CONDITIONALS TO CHECK
-
-//IF NO PHONE NUMBER IS INSERTED
-                    if (_phoneNumber == "") {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text(
-                              "You cannot leave the phone number empty.")));
-
-//IF NO COUNTRY CODE IS INSERTED
-                    } else {
-                      if (_countryCode.text == "") {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text(
-                                "You cannot leave the country code empty.")));
-
-//IF THERE IS A ZERO IN FRONT OF THE NUMBER
-                      } else {
-                        if (_phoneNumber.substring(0, 1) == "0") {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                              content: Text(
-                                  "Please remove the '0' in front of your phone number!")));
-
-//IF EVERYTHING ELSE RUNS FINE
-                        } else {
-                          var uri = Uri.parse(_completedLink);
-                          launchWhatsapp(url: uri);
-                        }
-                      }
-                    }
-                  },
-                ),
+                    )),
               ],
             ),
           ),
